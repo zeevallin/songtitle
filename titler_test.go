@@ -1,10 +1,26 @@
 package songtitle_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/zeevallin/songtitle"
 )
+
+func ExampleParse() {
+	// Get song title from a file name
+	song := songtitle.Parse("Foo Fighters • Everlong (CC) 🎤 [Karaoke] [Instrumental Lyrics]")
+	fmt.Printf("%s - %s\n", song.Artist, song.Title)
+	for _, tag := range song.Tags {
+		fmt.Printf("\t- %s\n", tag)
+	}
+	// Output:
+	// Foo Fighters - Everlong
+	// 	- CC
+	//	- Karaoke
+	//	- Instrumental Lyrics
+	//
+}
 
 func TestParse(t *testing.T) {
 	tests := []struct {
